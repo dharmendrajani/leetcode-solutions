@@ -12,9 +12,6 @@ class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
 
-        // if(head == NULL ){
-        //     return head;
-        // }
         ListNode* h1 = NULL;
         ListNode* t1 = NULL;
         ListNode* h2 = NULL;
