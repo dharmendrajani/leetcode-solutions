@@ -9,49 +9,95 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+ class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         vector<vector<int>> ans;
 
-        if(root == NULL){
+        if(root == NULL)
             return ans;
-        }
 
         queue<TreeNode*> q;
         q.push(root);
 
-        bool LtoR = true;
-        while(!q.empty()){
-            int n = q.size();
-            vector<int> level(n);
+        bool leftToRight = true;
 
-            for(int i=0;i<n;i++){
+        while(!q.empty()) {
+
+            int size = q.size();
+            vector<int> level;
+
+            for(int i = 0; i < size; i++) {
 
                 TreeNode* curr = q.front();
                 q.pop();
 
-                int idx;
-
-                if(LtoR)
-                  idx = i;
-                else
-                  idx = n-i-1;
-
-                level[idx] = curr->val;
+                level.push_back(curr->val);
 
                 if(curr->left)
-                  q.push(curr->left);
+                    q.push(curr->left);
 
                 if(curr->right)
-                  q.push(curr->right);      
+                    q.push(curr->right);
             }
+
+            if(!leftToRight)
+                reverse(level.begin(), level.end());
 
             ans.push_back(level);
 
-            LtoR = !LtoR;
+            leftToRight = !leftToRight;
         }
 
         return ans;
     }
 };
+
+
+
+// class Solution {
+// public:
+//     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+//         vector<vector<int>> ans;
+
+//         if(root == NULL){
+//             return ans;
+//         }
+
+//         queue<TreeNode*> q;
+//         q.push(root);
+
+//         bool LtoR = true;
+//         while(!q.empty()){
+//             int n = q.size();
+//             vector<int> level(n);
+
+//             for(int i=0;i<n;i++){
+
+//                 TreeNode* curr = q.front();
+//                 q.pop();
+
+//                 int idx;
+
+//                 if(LtoR)
+//                   idx = i;
+//                 else
+//                   idx = n-i-1;
+
+//                 level[idx] = curr->val;
+
+//                 if(curr->left)
+//                   q.push(curr->left);
+
+//                 if(curr->right)
+//                   q.push(curr->right);      
+//             }
+
+//             ans.push_back(level);
+
+//             LtoR = !LtoR;
+//         }
+
+//         return ans;
+//     }
+// };
