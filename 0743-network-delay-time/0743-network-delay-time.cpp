@@ -9,12 +9,12 @@ public:
 
         while(!pq.empty()){
             int v = pq.top().second;
-            int d = pq.top().first;
+            // int d = pq.top().first;
             pq.pop();
 
-            if(d > dist[v]){
-                continue;
-            }
+            // if(d > dist[v]){
+            //     continue;
+            // }
 
             for(auto e : adj[v]){
                 int neigh = e.first;
