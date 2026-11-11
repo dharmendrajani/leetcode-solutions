@@ -11,10 +11,7 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        priority_queue<ListNode*, vector<ListNode*>,
-        decltype([](ListNode* a, ListNode* b) {
-            return a->val > b->val;
-        })> pq;
+        priority_queue<ListNode*, vector<ListNode*>,decltype([](ListNode* a, ListNode* b) {return a->val > b->val;})> pq;
 
         for(auto list : lists) {
             if(list != NULL) {
@@ -37,8 +34,6 @@ public:
                 pq.push(node->next);
             }
         }
-
         return dummy->next;
-
     }
 };
